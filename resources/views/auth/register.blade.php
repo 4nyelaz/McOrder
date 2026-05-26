@@ -1,52 +1,99 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'McOrder') }} - Sign Up</title>
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/main-css.css') }}">
+</head>
+<body>
+    <div class="bg-overlay"></div>
+
+    <div class="container min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="row justify-content-center w-100">
+            <div class="col-md-5 col-lg-4">
+                {{-- Back to home button --}}
+                <div class="text-left mb-3">
+                    <a href="{{ route('home') }}" class="text-white text-decoration-none">
+                        <i class="fas fa-arrow-left me-2"></i>Back
+                    </a>
+                </div>
+                <div class="card p-4 p-md-5">
+
+                    {{-- Logo and title --}}
+                    <div class="text-center mb-4">
+                        <i class="fas fa-hamburger logo-icon"></i>
+                        <h1 class="brand-title">McOrder</h1>
+                        {{-- New users get a 5% discount shown here as incentive --}}
+                        <p class="brand-subtitle">Create your account and get <strong style="color:#DA291C;">5% off</strong> your first order!</p>
+                    </div>
+
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+
+                        {{-- Name --}}
+                        <div class="mb-3">
+                            <label class="form-label fw-600">
+                                Name
+                            </label>
+                            <input type="text" name="name" value="{{ old('name') }}" autofocus
+                                   class="form-control rounded-3 @error('name') is-invalid @enderror">
+                            @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Email --}}
+                        <div class="mb-3">
+                            <label class="form-label fw-600">
+                                Email
+                            </label>
+                            <input type="email" name="email" value="{{ old('email') }}"
+                                   class="form-control rounded-3 @error('email') is-invalid @enderror">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Password --}}
+                        <div class="mb-3">
+                            <label class="form-label fw-600">
+                                Password
+                            </label>
+                            <input type="password" name="password"
+                                   class="form-control rounded-3 @error('password') is-invalid @enderror">
+                            @error('password')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- Confirm password --}}
+                        <div class="mb-4">
+                            <label class="form-label fw-600">
+                                Confirm Password
+                            </label>
+                            <input type="password" name="password_confirmation"
+                                   class="form-control rounded-3">
+                        </div>
+
+                        {{-- Submit --}}
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-mcdonald">
+                                Create Account
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
         </div>
+    </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -46,4 +46,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    // 1-to-1: one user has one active order
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }

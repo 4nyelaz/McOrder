@@ -37,7 +37,7 @@
                         <a href="{{ route('login') }}" class="btn btn-mcdonald">
                             <i class="fas fa-sign-in-alt me-2"></i>Log In
                         </a>
-                        <a href="" class="btn btn-outline-mcdonald">
+                        <a href="{{ route('register') }}" class="btn btn-outline-mcdonald">
                             <i class="fas fa-user-plus me-2"></i>Sign up
                         </a>
                     </div>
