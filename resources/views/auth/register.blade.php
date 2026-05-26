@@ -29,11 +29,11 @@
                     <div class="text-center mb-4">
                         <i class="fas fa-hamburger logo-icon"></i>
                         <h1 class="brand-title">McOrder</h1>
-                        {{-- New users get a 5% discount shown here as incentive --}}
+                        {{-- New users get a 5% discount --}}
                         <p class="brand-subtitle">Create your account and get <strong style="color:#DA291C;">5% off</strong> your first order!</p>
                     </div>
 
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('signup') }}">
                         @csrf
 
                         {{-- Name --}}

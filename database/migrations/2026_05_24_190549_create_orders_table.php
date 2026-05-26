@@ -23,6 +23,7 @@ return new class extends Migration
             $table->decimal('extras_price', 8, 2)->default(0);
             $table->decimal('discount', 8, 2)->default(0);
             $table->decimal('total', 8, 2);
+            $table->text('selected_ingredients')->nullable();
             // Unique order number shown on the ticket (e.g. MC-00042)
             $table->string('order_number')->unique();
             $table->timestamps();

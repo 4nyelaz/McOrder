@@ -11,7 +11,7 @@ class MenuController extends Controller
     // List of all menus
     public function index()
     {
-        $menus = Menu::with(['ingredients', 'nutritionInfo'])->get();
+        $menus = Menu::with(['ingredients'])->get();
         return view('menus.index', compact('menus'));
     }
 
@@ -55,7 +55,7 @@ class MenuController extends Controller
     // See menu details
     public function show(Menu $menu)
     {
-        $menu->load(['ingredients', 'nutritionInfo']);
+        $menu->load(['ingredients']);
         return view('menus.show', compact('menu'));
     }
 

@@ -19,6 +19,7 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->string('name');
+            $table->string('image')->default('nophoto.png');
             $table->boolean('is_extra')->default(false);
             $table->decimal('extra_price', 8, 2)->default(0);
 
