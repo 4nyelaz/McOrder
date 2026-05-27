@@ -8,7 +8,7 @@ class Ingredient extends Model
 {
     protected $fillable = ['menu_id', 'name', 'is_extra', 'extra_price'];
 
-    // Inversa: un ingrediente pertenece a un menú
+    // An ingredient belongs to a menu
     public function menu()
     {
         return $this->belongsTo(Menu::class);

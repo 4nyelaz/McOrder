@@ -6,10 +6,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'McOrder') }} - Login</title>
 
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/main-css.css') }}">
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{ asset('css/main-css.css') }}" />
 </head>
 <body>
     <div class="bg-overlay"></div>
@@ -17,7 +21,7 @@
     <div class="container min-vh-100 d-flex align-items-center justify-content-center">
         <div class="row justify-content-center w-100">
             <div class="col-md-5 col-lg-4">
-                {{-- Back to home button --}}
+                <!-- Going back to home -->
                 <div class="text-left mb-3">
                     <a href="{{ route('home') }}" class="text-white text-decoration-none">
                         <i class="fas fa-arrow-left me-2"></i>Back
@@ -25,13 +29,13 @@
                 </div>
                 <div class="card p-4 p-md-5">
 
-                    {{-- Logo and title --}}
+                     <!-- Logo and title  -->
                     <div class="text-center mb-4">
                         <i class="fas fa-hamburger logo-icon"></i>
                         <h1 class="brand-title">McOrder</h1>
                     </div>
 
-                    {{-- Session error (wrong credentials) --}}
+                     <!-- Session error (wrong credentials)  -->
                     @if(session('status'))
                         <div class="alert alert-success rounded-3 mb-3">{{ session('status') }}</div>
                     @endif
@@ -39,7 +43,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-                        {{-- Email --}}
+                        <!--  Email  -->
                         <div class="mb-3">
                             <label class="form-label fw-600">
                                 Email
@@ -51,7 +55,7 @@
                             @enderror
                         </div>
 
-                        {{-- Password --}}
+                         <!-- Password  -->
                         <div class="mb-3">
                             <label class="form-label fw-600">
                                 Password
@@ -63,7 +67,6 @@
                             @enderror
                         </div>
 
-                        {{-- Submit --}}
                         <div class="d-grid mb-3">
                             <button type="submit" class="btn btn-mcdonald">
                                 <i class="fas fa-sign-in-alt me-2"></i>Log In

@@ -6,49 +6,22 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'McOrder') }} - Order {{ $order->order_number }}</title>
 
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/main-css.css') }}">
-
-    <style>
-        .ticket {
-            border: 2.5px dashed #FFC72C;
-            border-radius: 24px;
-            padding: 32px;
-            background: white;
-            max-width: 420px;
-            margin: 0 auto;
-        }
-        .ticket-separator {
-            border: none;
-            border-top: 2px dashed #e0e0e0;
-            margin: 16px 0;
-        }
-        .ticket-label {
-            color: #6c757d;
-            font-size: 13px;
-        }
-        .ticket-value {
-            font-weight: 600;
-            color: #2d2d2d;
-            font-size: 15px;
-        }
-        .order-number {
-            font-size: 36px;
-            font-weight: 700;
-            color: #DA291C;
-            letter-spacing: 2px;
-        }
-    </style>
+    <!-- Main css -->
+    <link rel="stylesheet" href="{{ asset('css/main-css.css') }}" />
 </head>
 <body>
     <div class="bg-overlay"></div>
 
-    <div class="container min-vh-100 d-flex align-items-center justify-content-center py-5">
+    <div class="container min-vh-100 d-flex align-items-center justify-content-center py-5 ">
         <div class="ticket">
 
-            {{-- Header --}}
+            <!-- Header  -->
             <div class="text-center mb-4">
                 <i class="fas fa-hamburger logo-icon"></i>
                 <h1 class="brand-title">McOrder</h1>
@@ -57,7 +30,7 @@
 
             <hr class="ticket-separator">
 
-            {{-- Order number --}}
+            <!-- Order number -->
             <div class="text-center mb-3">
                 <div class="ticket-label">Order Number</div>
                 <div class="order-number">{{ $order->order_number }}</div>
@@ -65,13 +38,13 @@
 
             <hr class="ticket-separator">
 
-            {{-- Customer --}}
+            <!-- Customer  -->
             <div class="d-flex justify-content-between mb-2">
                 <span class="ticket-label">Customer</span>
                 <span class="ticket-value">{{ Auth::user()->name }}</span>
             </div>
 
-            {{-- Menu --}}
+            <!-- Menu  -->
             <div class="d-flex justify-content-between mb-2">
                 <span class="ticket-label">Menu</span>
                 <span class="ticket-value">{{ $order->menu->name }}</span>
@@ -79,15 +52,12 @@
 
             <hr class="ticket-separator">
 
-            {{-- Selected ingredients --}}
+            <!-- Selected ingredients  -->
             <div class="mb-2">
                 <div class="ticket-label mb-2">Ingredients</div>
                 @foreach($order->selectedIngredients as $ingredient)
                     <div class="d-flex justify-content-between mb-1">
                         <span class="ticket-value" style="font-size:14px;">
-                            @if($ingredient->image === 'meat.png')
-                                <i class="fas fa-lock me-1" style="color:#DA291C; font-size:11px;"></i>
-                            @endif
                             {{ $ingredient->name }}
                         </span>
                         <span style="font-size:14px; color:{{ $ingredient->is_extra ? '#DA291C' : '#28a745' }}; font-weight:600;">
@@ -99,7 +69,7 @@
 
             <hr class="ticket-separator">
 
-            {{-- Price breakdown --}}
+             <!-- Price  -->
             <div class="d-flex justify-content-between mb-2">
                 <span class="ticket-label">Base price</span>
                 <span class="ticket-value">€{{ number_format($order->base_price, 2) }}</span>
@@ -121,7 +91,7 @@
 
             <hr class="ticket-separator">
 
-            {{-- Total --}}
+             <!-- Total  -->
             <div class="d-flex justify-content-between mb-4">
                 <span style="font-size:18px; font-weight:700; color:#2d2d2d;">TOTAL</span>
                 <span style="font-size:24px; font-weight:700; color:#DA291C;">
@@ -129,7 +99,7 @@
                 </span>
             </div>
 
-            {{-- Complete order — logs out after paying --}}
+            <!-- Complete order — logs out after paying  -->
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <div class="d-grid">
